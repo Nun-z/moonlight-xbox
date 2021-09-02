@@ -3,8 +3,6 @@
 #include "Common\DirectXHelper.h"
 #include "Utils.hpp"
 using namespace Windows::Gaming::Input;
-
-
 using namespace moonlight_xbox_dx;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;

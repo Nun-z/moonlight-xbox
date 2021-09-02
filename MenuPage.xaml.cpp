@@ -30,40 +30,53 @@ MenuPage::MenuPage()
 	InitializeComponent();
 }
 
+std::string getTextFromBox(String^ boxContents)
+{
+	std::wstring wideString(boxContents->Data());
+	std::string rawString(wideString.begin(), wideString.end());
+	return(rawString);
+}
+
 void moonlight_xbox_dx::MenuPage::ConnectButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	Platform::String ^ipAddress = this->ipAddressText->Text;
-	this->progressRing->IsActive = true;
-	MoonlightClient *client = MoonlightClient::GetInstance();
-	char ipAddressStr[2048];
-	wcstombs_s(NULL, ipAddressStr, ipAddress->Data(), 2047);
-	int status = client->Connect(ipAddressStr);
-	if (status != 0) {
-		this->connectStatus->Text = L"Cannot Connect";
-		return;
-	}
-	if (!client->IsPaired()) {
-		char* pin = client->GeneratePIN();
-		std::string s_str = std::string(pin);
-		std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
-		const wchar_t* w_char = wid_str.c_str();
-		Platform::String^ p_string = ref new Platform::String(w_char);
-		this->connectStatus->Text =String::Concat(L"Use PIN for pairing and then press Connect Again: ", p_string);
-		ProgressRing ^ring = progressRing;
-		TextBlock ^text = connectStatus;
-		auto t = Concurrency::create_async([]()
-		{
-				MoonlightClient* client = MoonlightClient::GetInstance();
-				int a = client->Pair();
-		});
-		this->progressRing->IsActive = false;
+	std::string ipString = getTextFromBox(ipAddressText->Text);
+
+	if (ipString.find_first_not_of("0123456789.") != std::string::npos) {
+		connectStatus->Text = "Invalid IP address";
 	}
 	else {
-		this->connectStatus->Text = L"Connected";
-		this->progressRing->IsActive = false;
-		UpdateApps();
+		Platform::String^ ipAddress = this->ipAddressText->Text;
+		this->progressRing->IsActive = true;
+		MoonlightClient* client = MoonlightClient::GetInstance();
+		char ipAddressStr[2048];
+		wcstombs_s(NULL, ipAddressStr, ipAddress->Data(), 2047);
+		int status = client->Connect(ipAddressStr);
+		if (status != 0) {
+			this->connectStatus->Text = L"Cannot Connect";
+			return;
+		}
+		if (!client->IsPaired()) {
+			char* pin = client->GeneratePIN();
+			std::string s_str = std::string(pin);
+			std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
+			const wchar_t* w_char = wid_str.c_str();
+			Platform::String^ p_string = ref new Platform::String(w_char);
+			this->connectStatus->Text = String::Concat(L"Use PIN for pairing and then press Connect Again: ", p_string);
+			ProgressRing^ ring = progressRing;
+			TextBlock^ text = connectStatus;
+			auto t = Concurrency::create_async([]()
+				{
+					MoonlightClient* client = MoonlightClient::GetInstance();
+					int a = client->Pair();
+				});
+			this->progressRing->IsActive = false;
+		}
+		else {
+			this->connectStatus->Text = L"Connected";
+			this->progressRing->IsActive = false;
+			UpdateApps();
+		}
 	}
-	//
 }
 
 void moonlight_xbox_dx::MenuPage::UpdateApps() {
@@ -85,27 +98,32 @@ void moonlight_xbox_dx::MenuPage::UpdateApps() {
 void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 
 	//TODO
-	//ResolutionInfo newInfo(0, 0);
+	std::string widthString = getTextFromBox(WidthTextbox->Text);
+	std::string heightString = getTextFromBox(HeightTextbox->Text);
 
-	String^ widthInput = WidthTextbox->Text;
-	std::wstring widthString(widthInput->Data());
-	int width = std::stoi(widthString);
-	ResolutionInfo::setWidth(width);
-
-	String^ heightInput = HeightTextbox->Text;
-	std::wstring heightString(heightInput->Data());
-	int height = std::stoi(heightString);
-	ResolutionInfo::setHeight(height);
-
-	ComboBoxItem^ item = (ComboBoxItem^) this->appsComboBox->SelectedItem;
-	MoonlightClient::GetInstance()->SetAppID((int) item->DataContext);
-	MoonlightClient::GetInstance()->SetSoftwareEncoder(/*this->UseSoftwareEncoder->IsChecked->Value*/false);
-	bool result = this->Frame->Navigate(Windows::UI::Xaml::Interop::TypeName(StreamPage::typeid));
-	if (result) {
-		this->ConnectStatusText->Text = L"OK";
+	if (widthString.find_first_not_of("0123456789") != std::string::npos || 
+		heightString.find_first_not_of("0123456789") != std::string::npos) {
+		ResolutionStatus->Text = "Invalid resolution";
 	}
 	else {
-		this->ConnectStatusText->Text = L"Unable to Navigate onto DirectX Page";
+		ResolutionStatus->Text = "";
+
+		int width = std::stoi(widthString);
+		ResolutionInfo::setWidth(width);
+
+		int height = std::stoi(heightString);
+		ResolutionInfo::setHeight(height);
+
+		ComboBoxItem^ item = (ComboBoxItem^)this->appsComboBox->SelectedItem;
+		MoonlightClient::GetInstance()->SetAppID((int)item->DataContext);
+		MoonlightClient::GetInstance()->SetSoftwareEncoder(/*this->UseSoftwareEncoder->IsChecked->Value*/false);
+		bool result = this->Frame->Navigate(Windows::UI::Xaml::Interop::TypeName(StreamPage::typeid));
+		if (result) {
+			this->ConnectStatusText->Text = L"OK";
+		}
+		else {
+			this->ConnectStatusText->Text = L"Unable to Navigate onto DirectX Page";
+		}
 	}
 }
 

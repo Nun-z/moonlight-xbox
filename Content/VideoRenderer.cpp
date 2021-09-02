@@ -228,7 +228,6 @@ void VideoRenderer::CreateDeviceDependentResources()
 	D3D11_TEXTURE2D_DESC renderTextureDesc = { 0 };
 
 	//TODO
-	//ResolutionInfo newInfo(0, 0);
 	int width = ResolutionInfo::getWidth();
 	int height = ResolutionInfo::getHeight();
 

@@ -10,10 +10,7 @@ public:
 	static void setHeight(int number) { height = number; }
 
 	ResolutionInfo(int givenWidth, int givenHeight)
-	{
-		setWidth(givenWidth);
-		setHeight(givenHeight);
-	}
+	{ setWidth(givenWidth); setHeight(givenHeight); }
 
 private:
 	static int width;
