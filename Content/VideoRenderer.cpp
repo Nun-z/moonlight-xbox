@@ -2,6 +2,7 @@
 #include "VideoRenderer.h"
 #include "MoonlightClient.h"
 #include "..\Common\DirectXHelper.h"
+#include "ResolutionInfo.h"
 #include <FFMpegDecoder.h>
 #include <Utils.hpp>
 
@@ -225,8 +226,12 @@ void VideoRenderer::CreateDeviceDependentResources()
 	DX::ThrowIfFailed(m_deviceResources->GetD3DDevice()->CreateSamplerState(&samplerDesc, samplerState.GetAddressOf()),"Sampler Creation");
 	DX::ThrowIfFailed(E_ACCESSDENIED,"Test Logging");
 	D3D11_TEXTURE2D_DESC renderTextureDesc = { 0 };
-	int width = 1280;
-	int height = 720;
+
+	//TODO
+	//ResolutionInfo newInfo(0, 0);
+	int width = ResolutionInfo::getWidth();
+	int height = ResolutionInfo::getHeight();
+
 	renderTextureDesc.Width = width;
 	renderTextureDesc.Height = height;
 	renderTextureDesc.ArraySize = 1;

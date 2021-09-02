@@ -129,14 +129,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <PackageCertificateThumbprint>FB25C3C435AB22F2CFC6F0C76561B7155A5D9B05</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>0BBFDBD9C447C9D649842B156AB88BB1C883023D</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <GenerateTestArtifacts>False</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageDir>D:\Progetti\moonlight-xbox-dx\AppPackages\moonlight-xbox-dx\</AppxPackageDir>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
@@ -309,6 +311,7 @@
     </ClInclude>
     <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="ResolutionInfo.h" />
     <ClInclude Include="StreamPage.xaml.h">
       <DependentUpon>StreamPage.xaml</DependentUpon>
     </ClInclude>
@@ -335,6 +338,7 @@
     </ClCompile>
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="ResolutionInfo.cpp" />
     <ClCompile Include="StreamPage.xaml.cpp">
       <DependentUpon>StreamPage.xaml</DependentUpon>
     </ClCompile>

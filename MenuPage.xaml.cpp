@@ -6,6 +6,8 @@
 #include "pch.h"
 #include "MenuPage.xaml.h"
 #include "StreamPage.xaml.h"
+#include "ResolutionInfo.h"
+#include <string>
 #include <ppltasks.h>
 
 using namespace moonlight_xbox_dx;
@@ -81,6 +83,20 @@ void moonlight_xbox_dx::MenuPage::UpdateApps() {
 }
 
 void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
+
+	//TODO
+	//ResolutionInfo newInfo(0, 0);
+
+	String^ widthInput = WidthTextbox->Text;
+	std::wstring widthString(widthInput->Data());
+	int width = std::stoi(widthString);
+	ResolutionInfo::setWidth(width);
+
+	String^ heightInput = HeightTextbox->Text;
+	std::wstring heightString(heightInput->Data());
+	int height = std::stoi(heightString);
+	ResolutionInfo::setHeight(height);
+
 	ComboBoxItem^ item = (ComboBoxItem^) this->appsComboBox->SelectedItem;
 	MoonlightClient::GetInstance()->SetAppID((int) item->DataContext);
 	MoonlightClient::GetInstance()->SetSoftwareEncoder(/*this->UseSoftwareEncoder->IsChecked->Value*/false);
