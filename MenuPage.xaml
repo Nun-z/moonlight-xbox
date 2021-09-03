@@ -28,9 +28,9 @@
             </StackPanel>
         </StackPanel>
         <TextBlock>Width</TextBlock>
-        <TextBox Width="128" x:Name="WidthTextbox" VerticalAlignment="Top" HorizontalAlignment="Left" PlaceholderText="Width" Text="1920"></TextBox>
+        <TextBox Width="128" x:Name="WidthTextbox" VerticalAlignment="Top" HorizontalAlignment="Left" PlaceholderText="Width" Text="1280"></TextBox>
         <TextBlock>Height</TextBlock>
-        <TextBox Width="128" x:Name="HeightTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="Height" Text="1080"></TextBox>
+        <TextBox Width="128" x:Name="HeightTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="Height" Text="720"></TextBox>
         <TextBlock><Run x:Name="ResolutionStatus" Text=""/></TextBlock>
     </StackPanel>
 </Page>
