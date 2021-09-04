@@ -73,9 +73,7 @@
     </ClCompile>
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="ResolutionInfo.cpp">
-      <Filter>Content</Filter>
-    </ClCompile>
+    <ClCompile Include="UserSelections.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="moonlight_xbox_dxMain.h" />
@@ -88,7 +86,7 @@
     <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="third_party\miniaudio.h" />
     <ClInclude Include="Utils.hpp" />
-    <ClInclude Include="ResolutionInfo.h" />
+    <ClInclude Include="UserSelections.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

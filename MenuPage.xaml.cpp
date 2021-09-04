@@ -6,7 +6,7 @@
 #include "pch.h"
 #include "MenuPage.xaml.h"
 #include "StreamPage.xaml.h"
-#include "ResolutionInfo.h"
+#include "UserSelections.h"
 #include <string>
 #include <ppltasks.h>
 
@@ -100,6 +100,16 @@ void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows
 	//TODO
 	std::string widthString = getTextFromBox(WidthTextbox->Text);
 	std::string heightString = getTextFromBox(HeightTextbox->Text);
+	std::string fpsString = getTextFromBox(FpsTextbox->Text);
+	std::string bitrateString = getTextFromBox(BitrateTextbox->Text);
+
+	UserSelections::setFps(std::stoi(fpsString));
+	UserSelections::setBitrate(std::stoi(bitrateString));
+	UserSelections::setWidth(std::stoi(widthString));
+	UserSelections::setHeight(std::stoi(heightString));
+
+	int height = std::stoi(heightString);
+	UserSelections::setHeight(height);
 
 	if (widthString.find_first_not_of("0123456789") != std::string::npos || 
 		heightString.find_first_not_of("0123456789") != std::string::npos) {
@@ -107,12 +117,6 @@ void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows
 	}
 	else {
 		ResolutionStatus->Text = "";
-
-		int width = std::stoi(widthString);
-		ResolutionInfo::setWidth(width);
-
-		int height = std::stoi(heightString);
-		ResolutionInfo::setHeight(height);
 
 		ComboBoxItem^ item = (ComboBoxItem^)this->appsComboBox->SelectedItem;
 		MoonlightClient::GetInstance()->SetAppID((int)item->DataContext);

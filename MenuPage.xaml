@@ -31,6 +31,10 @@
         <TextBox Width="128" x:Name="WidthTextbox" VerticalAlignment="Top" HorizontalAlignment="Left" PlaceholderText="Width" Text="1280"></TextBox>
         <TextBlock>Height</TextBlock>
         <TextBox Width="128" x:Name="HeightTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="Height" Text="720"></TextBox>
+        <TextBlock>FPS</TextBlock>
+        <TextBox Width="128" x:Name="FpsTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="FPS" Text="60"></TextBox>
+        <TextBlock>Bitrate</TextBlock>
+        <TextBox Width="128" x:Name="BitrateTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="Bitrate" Text="8000"></TextBox>
         <TextBlock><Run x:Name="ResolutionStatus" Text=""/></TextBlock>
     </StackPanel>
 </Page>

@@ -311,7 +311,7 @@
     </ClInclude>
     <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="Common\DeviceResources.h" />
-    <ClInclude Include="ResolutionInfo.h" />
+    <ClInclude Include="UserSelections.h" />
     <ClInclude Include="StreamPage.xaml.h">
       <DependentUpon>StreamPage.xaml</DependentUpon>
     </ClInclude>
@@ -338,7 +338,6 @@
     </ClCompile>
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
-    <ClCompile Include="ResolutionInfo.cpp" />
     <ClCompile Include="StreamPage.xaml.cpp">
       <DependentUpon>StreamPage.xaml</DependentUpon>
     </ClCompile>
@@ -360,6 +359,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UserSelections.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>

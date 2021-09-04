@@ -6,6 +6,7 @@ extern "C" {
 #include<libgamestream/client.h>
 }
 #include "FFMpegDecoder.h"
+#include "UserSelections.h"
 #include <AudioPlayer.h>
 #include <Utils.hpp>
 
@@ -33,11 +34,11 @@ int MoonlightClient::Init(std::shared_ptr<DX::DeviceResources> res,int width,int
 	STREAM_CONFIGURATION config;
 	config.width = width;
 	config.height = height;
-	config.bitrate = 8000;
+	config.bitrate = UserSelections::getBitrate();
 	config.clientRefreshRateX100 = 60 * 100;
 	config.colorRange = COLOR_RANGE_LIMITED;
 	config.encryptionFlags = 0;
-	config.fps = 60;
+	config.fps = UserSelections::getFps();
 	config.packetSize = 1024;
 	config.audioConfiguration = AUDIO_CONFIGURATION_STEREO;
 	config.supportsHevc = false;

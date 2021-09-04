@@ -2,7 +2,7 @@
 #include "VideoRenderer.h"
 #include "MoonlightClient.h"
 #include "..\Common\DirectXHelper.h"
-#include "ResolutionInfo.h"
+#include "UserSelections.h"
 #include <FFMpegDecoder.h>
 #include <Utils.hpp>
 
@@ -228,8 +228,8 @@ void VideoRenderer::CreateDeviceDependentResources()
 	D3D11_TEXTURE2D_DESC renderTextureDesc = { 0 };
 
 	//TODO
-	int width = ResolutionInfo::getWidth();
-	int height = ResolutionInfo::getHeight();
+	int width = UserSelections::getWidth();
+	int height = UserSelections::getHeight();
 
 	renderTextureDesc.Width = width;
 	renderTextureDesc.Height = height;
