@@ -1,4 +1,4 @@
-﻿//
+//
 // MenuPage.xaml.cpp
 // Implementation of the MenuPage class
 //
@@ -107,9 +107,6 @@ void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows
 	UserSelections::setBitrate(std::stoi(bitrateString));
 	UserSelections::setWidth(std::stoi(widthString));
 	UserSelections::setHeight(std::stoi(heightString));
-
-	int height = std::stoi(heightString);
-	UserSelections::setHeight(height);
 
 	if (widthString.find_first_not_of("0123456789") != std::string::npos || 
 		heightString.find_first_not_of("0123456789") != std::string::npos) {
