@@ -25,13 +25,11 @@ using namespace Windows::UI::Xaml::Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-MenuPage::MenuPage()
-{
+MenuPage::MenuPage() {
 	InitializeComponent();
 }
 
-std::string getTextFromBox(String^ boxContents)
-{
+std::string getTextFromBox(String^ boxContents) {
 	std::wstring wideString(boxContents->Data());
 	std::string rawString(wideString.begin(), wideString.end());
 	return(rawString);
@@ -97,19 +95,18 @@ void moonlight_xbox_dx::MenuPage::UpdateApps() {
 
 void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 
-	//TODO
-	std::string widthString = getTextFromBox(WidthTextbox->Text);
-	std::string heightString = getTextFromBox(HeightTextbox->Text);
-	std::string fpsString = getTextFromBox(FpsTextbox->Text);
-	std::string bitrateString = getTextFromBox(BitrateTextbox->Text);
+	std::string width = getTextFromBox(WidthTextbox->Text);
+	std::string height = getTextFromBox(HeightTextbox->Text);
+	std::string fps = getTextFromBox(FpsTextbox->Text);
+	std::string bitrate = getTextFromBox(BitrateTextbox->Text);
 
-	UserSelections::setFps(std::stoi(fpsString));
-	UserSelections::setBitrate(std::stoi(bitrateString));
-	UserSelections::setWidth(std::stoi(widthString));
-	UserSelections::setHeight(std::stoi(heightString));
+	UserSelections::setFps(std::stoi(fps));
+	UserSelections::setBitrate(std::stoi(bitrate));
+	UserSelections::setWidth(std::stoi(width));
+	UserSelections::setHeight(std::stoi(height));
 
-	if (widthString.find_first_not_of("0123456789") != std::string::npos || 
-		heightString.find_first_not_of("0123456789") != std::string::npos) {
+	if (width.find_first_not_of("0123456789") != std::string::npos || 
+		height.find_first_not_of("0123456789") != std::string::npos) {
 		ResolutionStatus->Text = "Invalid resolution";
 	}
 	else {
@@ -128,3 +125,9 @@ void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows
 	}
 }
 
+
+
+void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+
+}

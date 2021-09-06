@@ -21,5 +21,6 @@ namespace moonlight_xbox_dx
 		void ConnectButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnAppClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void UpdateApps();
+		void TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

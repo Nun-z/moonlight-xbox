@@ -27,14 +27,18 @@
                 <TextBlock x:Name="ConnectStatusText"></TextBlock>
             </StackPanel>
         </StackPanel>
-        <TextBlock>Width</TextBlock>
-        <TextBox Width="128" x:Name="WidthTextbox" VerticalAlignment="Top" HorizontalAlignment="Left" PlaceholderText="Width" Text="1280"></TextBox>
-        <TextBlock>Height</TextBlock>
-        <TextBox Width="128" x:Name="HeightTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="Height" Text="720"></TextBox>
-        <TextBlock>FPS</TextBlock>
-        <TextBox Width="128" x:Name="FpsTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="FPS" Text="60"></TextBox>
-        <TextBlock>Bitrate</TextBlock>
-        <TextBox Width="128" x:Name="BitrateTextbox" VerticalAlignment="Bottom" HorizontalAlignment="Left" PlaceholderText="Bitrate" Text="8000"></TextBox>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="52" Margin="0,0,96,0"><Run Text="Width"/></TextBlock>
+            <TextBlock Width="52" Margin="0,0,96,0"><Run Text="Height"/></TextBlock>
+            <TextBlock Width="52" Margin="0,0,96,0"><Run Text="FPS"/></TextBlock>
+            <TextBlock Width="52"><Run Text="Bitrate"/></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="128" x:Name="WidthTextbox" PlaceholderText="Width" Text="1280" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="HeightTextbox" PlaceholderText="Height" Text="720" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="FpsTextbox" PlaceholderText="FPS" Text="60" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="BitrateTextbox" PlaceholderText="Bitrate" Text="8000"/>
+        </StackPanel>
         <TextBlock><Run x:Name="ResolutionStatus" Text=""/></TextBlock>
     </StackPanel>
 </Page>

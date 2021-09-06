@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="50678OtherSolutions.MoonlightNxz2"
-    Publisher="CN=BBEFCBF2-FC77-4387-93B9-9F5F1BF649E7"
-    Version="1.0.0.0" />
+    Name="57516RevSolutions.MoonlightTestingNxz"
+    Publisher="CN=E23CCF16-EA3E-4B56-94BB-A822AEB10063"
+    Version="2.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="7b0632ea-1bdb-4c56-8386-964ce1a58aa4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="68a1a69d-b882-427e-bf18-67c764272640" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Moonlight Nxz 2</DisplayName>
-    <PublisherDisplayName>Other Solutions</PublisherDisplayName>
+    <DisplayName>Moonlight Testing Nxz</DisplayName>
+    <PublisherDisplayName>Rev Solutions</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="moonlight_xbox_dx.App">
       <uap:VisualElements
-        DisplayName="Moonlight Nxz 2"
+        DisplayName="Moonlight Testing Nxz"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="moonlight-xbox-dx"
