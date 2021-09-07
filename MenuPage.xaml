@@ -36,7 +36,7 @@
         <StackPanel Orientation="Horizontal">
             <TextBox Width="128" x:Name="WidthTextbox" PlaceholderText="Width" Text="1280" Margin="0,0,20,0"/>
             <TextBox Width="128" x:Name="HeightTextbox" PlaceholderText="Height" Text="720" Margin="0,0,20,0"/>
-            <TextBox Width="128" x:Name="FpsTextbox" PlaceholderText="FPS" Text="60" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="FpsTextbox" PlaceholderText="FPS" Text="30" Margin="0,0,20,0"/>
             <TextBox Width="128" x:Name="BitrateTextbox" PlaceholderText="Bitrate" Text="8000"/>
         </StackPanel>
         <TextBlock><Run x:Name="ResolutionStatus" Text=""/></TextBlock>
