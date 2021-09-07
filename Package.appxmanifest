@@ -9,7 +9,7 @@
   <Identity
     Name="57516RevSolutions.MoonlightTestingNxz"
     Publisher="CN=E23CCF16-EA3E-4B56-94BB-A822AEB10063"
-    Version="2.0.0.0" />
+    Version="6.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="68a1a69d-b882-427e-bf18-67c764272640" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
