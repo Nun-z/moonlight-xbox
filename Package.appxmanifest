@@ -9,7 +9,7 @@
   <Identity
     Name="49654UnbreakableSolutions.MoonlightTestingNz2"
     Publisher="CN=DD5FDA01-1DC9-485C-B713-BEE7A70C1370"
-    Version="1.0.0.0" />
+    Version="3.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="8ca51910-e0c2-499f-9f35-45920d99aa9d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

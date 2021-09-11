@@ -6,7 +6,6 @@
 #include <iostream>
 
 using namespace moonlight_xbox_dx;
-
 using namespace Windows::Storage;
 using namespace Windows::System;
 
@@ -16,21 +15,14 @@ int UserSelections::height;
 int UserSelections::fps;
 int UserSelections::bitrate;
 
-std::string getNextUserVar(std::string& fileContents);
-void initalizeUserFields();
-static std::string getTextFromFile(Windows::Storage::StorageFile^ givenFile);
-static Windows::Storage::StorageFile^ getFile(std::string filename);
-bool doesFileExist(std::string filename);
-void setDefaults();
-
-std::string getNextUserVar(std::string &fileContents) {
+std::string UserSelections::getNextUserVar(std::string &fileContents) {
 	int endOfFirst = fileContents.find_first_of(" ");
 	std::string firstVar = fileContents.substr(0, endOfFirst);
 	fileContents = fileContents.substr(endOfFirst + 1, fileContents.length() - 1);
 	return(firstVar);
 }
 
-void setDefaults()
+void UserSelections::setDefaults()
 {
 	UserSelections::setWidth(1280);
 	UserSelections::setHeight(720);
@@ -61,7 +53,7 @@ void UserSelections::initalizeUserFields() {
 	}
 }
 
-static std::string getTextFromFile(Windows::Storage::StorageFile^ givenFile) {
+std::string UserSelections::getTextFromFile(Windows::Storage::StorageFile^ givenFile) {
 	auto getTextTask = concurrency::create_task(Windows::Storage::FileIO::ReadTextAsync(givenFile))
 		.then([](Platform::String^ returnedText) {
 		return(Utilities::getTextFromBox(returnedText));
@@ -71,7 +63,7 @@ static std::string getTextFromFile(Windows::Storage::StorageFile^ givenFile) {
 	return(getTextTask.get());
 }
 
-static Windows::Storage::StorageFile^ getFile(std::string filename) {
+Windows::Storage::StorageFile^ UserSelections::getFile(std::string filename) {
 	Windows::Storage::StorageFolder^ localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
 	auto getFileTask = concurrency::create_task(
 		localFolder->GetFileAsync("settings.txt"))
@@ -83,8 +75,7 @@ static Windows::Storage::StorageFile^ getFile(std::string filename) {
 	return(getFileTask.get());
 }
 
-// Working
-static bool doesFileExist(std::string filename) {
+bool UserSelections::doesFileExist(std::string filename) {
 	Windows::Storage::StorageFolder^ localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
 	auto checkFileTask = concurrency::create_task(
 		localFolder->TryGetItemAsync(Utilities::getPlatformString(filename)))

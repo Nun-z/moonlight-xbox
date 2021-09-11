@@ -15,7 +15,12 @@ public:
 	static void setBitrate(int number) { bitrate = number; }
 	static void setIpAddress(std::string ip) { ipAddress = ip; }
 
+	static std::string getNextUserVar(std::string& fileContents);
 	static void initalizeUserFields();
+	static std::string getTextFromFile(Windows::Storage::StorageFile^ givenFile);
+	static Windows::Storage::StorageFile^ getFile(std::string filename);
+	static bool doesFileExist(std::string filename);
+	static void setDefaults();
 
 private:
 	static int width;
