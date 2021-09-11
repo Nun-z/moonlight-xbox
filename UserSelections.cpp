@@ -22,8 +22,12 @@ std::string UserSelections::getNextUserVar(std::string &fileContents) {
 	return(firstVar);
 }
 
+<<<<<<< HEAD
 void UserSelections::setDefaults()
 {
+=======
+void setDefaults() {
+>>>>>>> 67f4960d06a6d64287e77b4da87dd574b67de840
 	UserSelections::setWidth(1280);
 	UserSelections::setHeight(720);
 	UserSelections::setFps(30);
