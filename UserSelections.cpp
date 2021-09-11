@@ -21,6 +21,7 @@ void initalizeUserFields();
 static std::string getTextFromFile(Windows::Storage::StorageFile^ givenFile);
 static Windows::Storage::StorageFile^ getFile(std::string filename);
 bool doesFileExist(std::string filename);
+void setDefaults();
 
 std::string getNextUserVar(std::string &fileContents) {
 	int endOfFirst = fileContents.find_first_of(" ");
@@ -29,22 +30,34 @@ std::string getNextUserVar(std::string &fileContents) {
 	return(firstVar);
 }
 
+void setDefaults()
+{
+	UserSelections::setWidth(1280);
+	UserSelections::setHeight(720);
+	UserSelections::setFps(30);
+	UserSelections::setBitrate(60000);
+	UserSelections::setIpAddress("");
+}
+
 void UserSelections::initalizeUserFields() {
 	if (doesFileExist("settings.txt")) {
 		Windows::Storage::StorageFile^ settingsFile = getFile("settings.txt");
-		std::string settings = getTextFromFile(settingsFile);
+		try {
+			std::string settings = getTextFromFile(settingsFile);
 
-		UserSelections::setIpAddress(getNextUserVar(settings));
-		UserSelections::setWidth(stoi(getNextUserVar(settings)));
-		UserSelections::setHeight(stoi(getNextUserVar(settings)));
-		UserSelections::setFps(stoi(getNextUserVar(settings)));
-		UserSelections::setBitrate(stoi(getNextUserVar(settings)));
+			UserSelections::setIpAddress(getNextUserVar(settings));
+			UserSelections::setWidth(stoi(getNextUserVar(settings)));
+			UserSelections::setHeight(stoi(getNextUserVar(settings)));
+			UserSelections::setFps(stoi(getNextUserVar(settings)));
+			UserSelections::setBitrate(stoi(getNextUserVar(settings)));
+		}
+		catch (std::exception e) {
+			OutputDebugString(L"Formatting error(s) detected.  Aborting load.");
+			setDefaults();
+		}
 	}
 	else {
-		UserSelections::setWidth(1280);
-		UserSelections::setHeight(720);
-		UserSelections::setFps(30);
-		UserSelections::setBitrate(60000);
+		setDefaults();
 	}
 }
 
