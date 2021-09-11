@@ -17,7 +17,7 @@ int UserSelections::fps;
 int UserSelections::bitrate;
 
 std::string getNextUserVar(std::string& fileContents);
-std::string initializeUserFields();
+void initalizeUserFields();
 static std::string getTextFromFile(Windows::Storage::StorageFile^ givenFile);
 static Windows::Storage::StorageFile^ getFile(std::string filename);
 bool doesFileExist(std::string filename);
