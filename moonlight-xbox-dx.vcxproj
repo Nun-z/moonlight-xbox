@@ -250,6 +250,7 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -330,6 +331,7 @@
     <ClInclude Include="third_party\miniaudio.h">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
     </ClInclude>
+    <ClInclude Include="Utilities.h" />
     <ClInclude Include="Utils.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -360,6 +362,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UserSelections.cpp" />
+    <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>

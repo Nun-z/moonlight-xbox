@@ -14,7 +14,7 @@
         <TextBlock>IP Address or Hostname:</TextBlock>
         <StackPanel Orientation="Horizontal"  XYFocusKeyboardNavigation="Enabled">
             <TextBox Width="128" x:Name="ipAddressText" HorizontalAlignment="Left"></TextBox>
-            <Button Click="ConnectButton_Click" x:Name="ConnectButton">Connect</Button>
+            <Button Click="ConnectButton_Click" x:Name="ConnectButton" Margin="10,0,0,0">Connect</Button>
             <ProgressRing x:Name="progressRing" Margin="10"></ProgressRing>
             <TextBlock x:Name="connectStatus"></TextBlock>
         </StackPanel>
@@ -23,7 +23,7 @@
             <StackPanel Orientation="Horizontal">
                 <ComboBox x:Name="appsComboBox">
                 </ComboBox>
-                <Button Click="OnAppClicked">Open</Button>
+                <Button Click="OnAppClicked" Margin="10,0,0,0">Open</Button>
                 <TextBlock x:Name="ConnectStatusText"></TextBlock>
             </StackPanel>
         </StackPanel>
@@ -34,10 +34,11 @@
             <TextBlock Width="52"><Run Text="Bitrate"/></TextBlock>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBox Width="128" x:Name="WidthTextbox" PlaceholderText="Width" Text="1280" Margin="0,0,20,0"/>
-            <TextBox Width="128" x:Name="HeightTextbox" PlaceholderText="Height" Text="720" Margin="0,0,20,0"/>
-            <TextBox Width="128" x:Name="FpsTextbox" PlaceholderText="FPS" Text="30" Margin="0,0,20,0"/>
-            <TextBox Width="128" x:Name="BitrateTextbox" PlaceholderText="Bitrate" Text="60000"/>
+            <TextBox Width="128" x:Name="WidthTextbox" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="HeightTextbox" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="FpsTextbox" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="BitrateTextbox"/>
+            <Button x:Name="loadButton" Click="OnLoadClicked" Content="Load" Margin="10,0,0,0"/>
         </StackPanel>
         <TextBlock><Run x:Name="ResolutionStatus" Text="Set width to 1920 and height to 1072 for 1080p."/></TextBlock>
     </StackPanel>
