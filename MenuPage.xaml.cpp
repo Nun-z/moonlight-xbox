@@ -10,9 +10,6 @@
 #include "Utilities.h"
 #include <string>
 #include <ppltasks.h>
-#include <fstream>
-#include <iostream>
-#include <string>
 
 using namespace moonlight_xbox_dx;
 
@@ -128,12 +125,10 @@ void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows
 	}
 }
 
-
 void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 
 }
-
 
 void moonlight_xbox_dx::MenuPage::OnLoadClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {

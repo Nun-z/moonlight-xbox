@@ -7,12 +7,6 @@ std::string Utilities::getTextFromBox(Platform::String^ boxContents) {
 	return(rawString);
 }
 
-void Utilities::setTextboxText(std::string input, Platform::String^ textBox) {
-	std::wstring wideInput = std::wstring(input.begin(), input.end());
-	const wchar_t* charInput = wideInput.c_str();
-	textBox = ref new Platform::String(charInput);
-}
-
 Platform::String^ Utilities::getPlatformString(std::string input) {
 	std::wstring wideInput = std::wstring(input.begin(), input.end());
 	const wchar_t* charInput = wideInput.c_str();

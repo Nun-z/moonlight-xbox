@@ -22,16 +22,14 @@ static std::string getTextFromFile(Windows::Storage::StorageFile^ givenFile);
 static Windows::Storage::StorageFile^ getFile(std::string filename);
 bool doesFileExist(std::string filename);
 
-std::string getNextUserVar(std::string &fileContents)
-{
+std::string getNextUserVar(std::string &fileContents) {
 	int endOfFirst = fileContents.find_first_of(" ");
 	std::string firstVar = fileContents.substr(0, endOfFirst);
 	fileContents = fileContents.substr(endOfFirst + 1, fileContents.length() - 1);
 	return(firstVar);
 }
 
-void UserSelections::initalizeUserFields()
-{
+void UserSelections::initalizeUserFields() {
 	if (doesFileExist("settings.txt")) {
 		Windows::Storage::StorageFile^ settingsFile = getFile("settings.txt");
 		std::string settings = getTextFromFile(settingsFile);
