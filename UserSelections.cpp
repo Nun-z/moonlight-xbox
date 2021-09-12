@@ -27,7 +27,6 @@ void UserSelections::setDefaults() {
 	UserSelections::setHeight(720);
 	UserSelections::setFps(30);
 	UserSelections::setBitrate(60000);
-	UserSelections::setIpAddress("");
 }
 
 void UserSelections::initalizeUserFields() {
