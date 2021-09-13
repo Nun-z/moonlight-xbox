@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "UserSelections.h"
-#include "Utilities.h"
 #include <ppltasks.h>
 #include <string>
 #include <iostream>
+#include <Utils.hpp>
 
 using namespace moonlight_xbox_dx;
 using namespace Windows::Storage;
@@ -54,10 +54,9 @@ void UserSelections::initalizeUserFields() {
 std::string UserSelections::getTextFromFile(Windows::Storage::StorageFile^ givenFile) {
 	auto getTextTask = concurrency::create_task(Windows::Storage::FileIO::ReadTextAsync(givenFile))
 		.then([](Platform::String^ returnedText) {
-		return(Utilities::getTextFromBox(returnedText));
+		return(Utils::getTextFromBox(returnedText));
 			});
 
-	getTextTask.wait();
 	return(getTextTask.get());
 }
 
@@ -69,14 +68,13 @@ Windows::Storage::StorageFile^ UserSelections::getFile(std::string filename) {
 		return(returnedFile);
 			});
 
-	getFileTask.wait();
 	return(getFileTask.get());
 }
 
 bool UserSelections::doesFileExist(std::string filename) {
 	Windows::Storage::StorageFolder^ localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
 	auto checkFileTask = concurrency::create_task(
-		localFolder->TryGetItemAsync(Utilities::getPlatformString(filename)))
+		localFolder->TryGetItemAsync(Utils::getPlatformString(filename)))
 		.then([](IStorageItem^ test) {
 		if (test)
 		{
@@ -88,6 +86,5 @@ bool UserSelections::doesFileExist(std::string filename) {
 		}
 			});
 
-	checkFileTask.wait();
 	return(checkFileTask.get());
 }

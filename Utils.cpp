@@ -32,6 +32,17 @@ namespace moonlight_xbox_dx {
 		std::vector<std::wstring> GetLogLines() {
 			return logLines;
 		}
-	}
 
+		Platform::String^ getPlatformString(std::string input) {
+			std::wstring wideInput = std::wstring(input.begin(), input.end());
+			const wchar_t* charInput = wideInput.c_str();
+			return(ref new Platform::String(charInput));
+		}
+
+		std::string getTextFromBox(Platform::String^ boxContents) {
+			std::wstring wideString(boxContents->Data());
+			std::string rawString(wideString.begin(), wideString.end());
+			return(rawString);
+		}
+	}
 }

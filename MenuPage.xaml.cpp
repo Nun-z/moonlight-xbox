@@ -7,9 +7,9 @@
 #include "MenuPage.xaml.h"
 #include "StreamPage.xaml.h"
 #include "UserSelections.h"
-#include "Utilities.h"
 #include <string>
 #include <ppltasks.h>
+#include <Utils.hpp>
 
 using namespace moonlight_xbox_dx;
 
@@ -37,7 +37,7 @@ MenuPage::MenuPage() {
 
 void moonlight_xbox_dx::MenuPage::ConnectButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	std::string ipString = Utilities::getTextFromBox(ipAddressText->Text);
+	std::string ipString = Utils::getTextFromBox(ipAddressText->Text);
 
 	if (ipString.find_first_not_of("0123456789.") != std::string::npos) {
 		connectStatus->Text = "Invalid IP address";
@@ -95,10 +95,10 @@ void moonlight_xbox_dx::MenuPage::UpdateApps() {
 
 void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 
-	std::string width = Utilities::getTextFromBox(WidthTextbox->Text);
-	std::string height = Utilities::getTextFromBox(HeightTextbox->Text);
-	std::string fps = Utilities::getTextFromBox(FpsTextbox->Text);
-	std::string bitrate = Utilities::getTextFromBox(BitrateTextbox->Text);
+	std::string width = Utils::getTextFromBox(WidthTextbox->Text);
+	std::string height = Utils::getTextFromBox(HeightTextbox->Text);
+	std::string fps = Utils::getTextFromBox(FpsTextbox->Text);
+	std::string bitrate = Utils::getTextFromBox(BitrateTextbox->Text);
 
 	UserSelections::setFps(std::stoi(fps));
 	UserSelections::setBitrate(std::stoi(bitrate));
@@ -132,9 +132,9 @@ void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ s
 
 void moonlight_xbox_dx::MenuPage::OnLoadClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	ipAddressText->Text = Utilities::getPlatformString(UserSelections::getIpAddress());
-	WidthTextbox->Text = Utilities::getPlatformString(std::to_string(UserSelections::getWidth()));
-	HeightTextbox->Text = Utilities::getPlatformString(std::to_string(UserSelections::getHeight()));
-	FpsTextbox->Text = Utilities::getPlatformString(std::to_string(UserSelections::getFps()));
-	BitrateTextbox->Text = Utilities::getPlatformString(std::to_string(UserSelections::getBitrate()));
+	ipAddressText->Text = Utils::getPlatformString(UserSelections::getIpAddress());
+	WidthTextbox->Text = Utils::getPlatformString(std::to_string(UserSelections::getWidth()));
+	HeightTextbox->Text = Utils::getPlatformString(std::to_string(UserSelections::getHeight()));
+	FpsTextbox->Text = Utils::getPlatformString(std::to_string(UserSelections::getFps()));
+	BitrateTextbox->Text = Utils::getPlatformString(std::to_string(UserSelections::getBitrate()));
 }

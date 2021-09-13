@@ -10,5 +10,9 @@ namespace moonlight_xbox_dx {
 		void Log(const char* fmt);
 
 		std::vector<std::wstring> GetLogLines();
+
+		Platform::String^ getPlatformString(std::string input);
+
+		std::string getTextFromBox(Platform::String^ boxContents);
 	}
 }
