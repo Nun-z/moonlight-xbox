@@ -132,7 +132,10 @@ void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ s
 
 void moonlight_xbox_dx::MenuPage::OnLoadClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	ipAddressText->Text = Utils::getPlatformString(UserSelections::getIpAddress());
+	Platform::String^ currentIpAddress = Utils::getPlatformString(UserSelections::getIpAddress());
+	if (currentIpAddress != "") {
+		ipAddressText->Text = currentIpAddress;
+	}
 	WidthTextbox->Text = Utils::getPlatformString(std::to_string(UserSelections::getWidth()));
 	HeightTextbox->Text = Utils::getPlatformString(std::to_string(UserSelections::getHeight()));
 	FpsTextbox->Text = Utils::getPlatformString(std::to_string(UserSelections::getFps()));
