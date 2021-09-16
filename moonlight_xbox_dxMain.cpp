@@ -9,15 +9,16 @@ using namespace Windows::System::Threading;
 using namespace Concurrency;
 
 // Loads and initializes application assets when the application is loaded.
-moonlight_xbox_dxMain::moonlight_xbox_dxMain(const std::shared_ptr<DX::DeviceResources>& deviceResources) :
-	m_deviceResources(deviceResources), m_pointerLocationX(0.0f)
+moonlight_xbox_dxMain::moonlight_xbox_dxMain(const std::shared_ptr<DX::DeviceResources>& deviceResources, Windows::UI::Xaml::FrameworkElement^ flyoutButton, Windows::UI::Xaml::Controls::MenuFlyout^ flyout, Windows::UI::Core::CoreDispatcher^ dispatcher):
+
+	m_deviceResources(deviceResources), m_pointerLocationX(0.0f),m_flyoutButton(flyoutButton),m_dispatcher(dispatcher),m_flyout(flyout)
 {
 	// Register to be notified if the Device is lost or recreated
 	m_deviceResources->RegisterDeviceNotify(this);
 
 	m_sceneRenderer = std::unique_ptr<VideoRenderer>(new VideoRenderer(m_deviceResources));
 
-	m_fpsTextRenderer = std::unique_ptr<SampleFpsTextRenderer>(new SampleFpsTextRenderer(m_deviceResources));
+	m_fpsTextRenderer = std::unique_ptr<LogRenderer>(new LogRenderer(m_deviceResources));
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	// e.g. for 60 FPS fixed timestep update logic, call:
@@ -110,7 +111,7 @@ void moonlight_xbox_dxMain::ProcessInput()
 	Windows::Gaming::Input::Gamepad^ gamepad = gamepads->GetAt(0);
 	auto reading = gamepad->GetCurrentReading();
 	//If this combination is pressed on gamed we should handle some magic things :)
-	GamepadButtons magicKey[] = { GamepadButtons::LeftShoulder,GamepadButtons::RightShoulder,GamepadButtons::Menu,GamepadButtons::View };
+	GamepadButtons magicKey[] = { GamepadButtons::Menu,GamepadButtons::View };
 	bool isCurrentlyPressed = true;
 	for (auto k : magicKey) {
 		if ((reading.Buttons & k) != k) {
@@ -119,17 +120,12 @@ void moonlight_xbox_dxMain::ProcessInput()
 		}
 	}
 	if (isCurrentlyPressed) {
-		if (magicCombinationPressed)return;
-		if ((reading.Buttons & GamepadButtons::Y) == GamepadButtons::Y) {
-			Utils::Log("Mouse mode ");
-			Utils::Log(mouseMode ? "disabled\n" : "enabled\n");
-			mouseMode = !mouseMode;
-			magicCombinationPressed = true;
-		}
+		m_dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([this]() {
+			Windows::UI::Xaml::Controls::Flyout::ShowAttachedFlyout(m_flyoutButton);
+		}));
+		insideFlyout = true;
 	}
-	else {
-		magicCombinationPressed = false;
-	}
+	if (insideFlyout)return;
 	//If mouse mode is enabled the gamepad acts as a mouse, instead we pass the raw events to the host
 	if (mouseMode) {
 		//Position
@@ -164,6 +160,7 @@ void moonlight_xbox_dxMain::ProcessInput()
 	}
 	
 }
+
 
 // Renders the current frame according to the current application state.
 // Returns true if the frame was rendered and is ready to be displayed.
@@ -210,4 +207,8 @@ void moonlight_xbox_dxMain::OnDeviceRestored()
 	m_sceneRenderer->CreateDeviceDependentResources();
 	m_fpsTextRenderer->CreateDeviceDependentResources();
 	CreateWindowSizeDependentResources();
+}
+
+void moonlight_xbox_dxMain::SetFlyoutOpened(bool value) {
+	insideFlyout = value;
 }

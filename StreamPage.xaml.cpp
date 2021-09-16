@@ -62,7 +62,7 @@ void StreamPage::Page_Loaded(Platform::Object^ sender, Windows::UI::Xaml::Routed
 		// We can create the device-dependent resources.
 		m_deviceResources = std::make_shared<DX::DeviceResources>();
 		m_deviceResources->SetSwapChainPanel(swapChainPanel);
-		m_main = std::unique_ptr<moonlight_xbox_dxMain>(new moonlight_xbox_dxMain(m_deviceResources));
+		m_main = std::unique_ptr<moonlight_xbox_dxMain>(new moonlight_xbox_dxMain(m_deviceResources,this->flyoutButton,this->ActionsFlyout,Dispatcher));
 		m_main->CreateWindowSizeDependentResources();
 		m_main->StartRenderLoop();
 	}
@@ -103,4 +103,31 @@ void StreamPage::OnSwapChainPanelSizeChanged(Object^ sender, Windows::UI::Xaml::
 	critical_section::scoped_lock lock(m_main->GetCriticalSection());
 	m_deviceResources->SetLogicalSize(e->NewSize);
 	m_main->CreateWindowSizeDependentResources();
+}
+
+
+void moonlight_xbox_dx::StreamPage::flyoutButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	Windows::UI::Xaml::Controls::Flyout::ShowAttachedFlyout((FrameworkElement^)sender);
+	m_main->SetFlyoutOpened(true);
+}
+
+
+void moonlight_xbox_dx::StreamPage::ActionsFlyout_Closed(Platform::Object^ sender, Platform::Object^ e)
+{
+	m_main->SetFlyoutOpened(false);
+}
+
+
+void moonlight_xbox_dx::StreamPage::toggleMouseButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	m_main->mouseMode = !m_main->mouseMode;
+	this->toggleMouseButton->Text = m_main->mouseMode ? "Exit Mouse Mode" : "Toggle Mouse Mode";
+}
+
+
+void moonlight_xbox_dx::StreamPage::toggleLogsButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	Utils::showLogs = !Utils::showLogs;
+	this->toggleLogsButton->Text = Utils::showLogs ? "Hide Logs" : "Show Logs";
 }
