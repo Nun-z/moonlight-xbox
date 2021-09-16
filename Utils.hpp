@@ -4,7 +4,7 @@
 namespace moonlight_xbox_dx {
 	namespace Utils {
 		extern std::vector<std::wstring> logLines;
-
+		extern bool showLogs;
 		Platform::String^ StringPrintf(const char* fmt, ...);
 
 		void Log(const char* fmt);
