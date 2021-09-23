@@ -39,7 +39,6 @@ MenuPage::MenuPage() {
 		});
 }
 
-
 void moonlight_xbox_dx::MenuPage::ConnectButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 	//config = ref new StreamConfiguration();
 	Platform::String^ currentHostname = config->getHostname();
