@@ -30,8 +30,7 @@ using namespace Windows::UI::Core;
 StreamConfiguration^ config = ref new StreamConfiguration();
 MoonlightClient* client;
 
-MenuPage::MenuPage()
-{
+MenuPage::MenuPage() {
 	//ref new StreamConfiguration();
 
 	InitializeComponent();
@@ -41,8 +40,7 @@ MenuPage::MenuPage()
 }
 
 
-void moonlight_xbox_dx::MenuPage::ConnectButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
+void moonlight_xbox_dx::MenuPage::ConnectButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 	//config = ref new StreamConfiguration();
 	Platform::String^ currentHostname = config->getHostname();
 
@@ -79,6 +77,7 @@ void moonlight_xbox_dx::MenuPage::ConnectButton_Click(Platform::Object^ sender, 
 		this->progressRing->IsActive = false;
 	}
 	else {
+
 		this->connectStatus->Text = L"Connected";
 		this->progressRing->IsActive = false;
 		UpdateApps();
@@ -132,14 +131,7 @@ void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows
 	}
 }
 
-
-
 void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-
-}
-
-void moonlight_xbox_dx::MenuPage::OnLoadClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 
 }

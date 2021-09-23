@@ -38,7 +38,6 @@
             <TextBox Width="128" x:Name="HeightTextbox" Margin="0,0,20,0"/>
             <TextBox Width="128" x:Name="FpsTextbox" Margin="0,0,20,0"/>
             <TextBox Width="128" x:Name="BitrateTextbox"/>
-            <Button x:Name="loadButton" Click="OnLoadClicked" Content="Load" Margin="10,0,0,0"/>
         </StackPanel>
         <TextBlock><Run x:Name="ResolutionStatus" Text="Set width to 1920 and height to 1072 for 1080p."/></TextBlock>
     </StackPanel>
