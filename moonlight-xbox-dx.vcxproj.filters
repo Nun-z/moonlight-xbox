@@ -91,6 +91,7 @@
     <ClCompile Include="Client\MoonlightClient.cpp">
       <Filter>Client</Filter>
     </ClCompile>
+    <ClCompile Include="Client\StreamConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

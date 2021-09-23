@@ -5,20 +5,15 @@ extern "C" {
 #include<Limelight.h>
 #include<libgamestream/client.h>
 }
-<<<<<<< HEAD:MoonlightClient.cpp
-#include "FFMpegDecoder.h"
+
 #include "UserSelections.h"
-#include <AudioPlayer.h>
-=======
 #include "Streaming\FFMpegDecoder.h"
 #include <Streaming\AudioPlayer.h>
->>>>>>> 30f9447bb33f33645a6a4398ef8f59c8e75fcff4:Client/MoonlightClient.cpp
 #include <Utils.hpp>
 #include <Client\StreamConfiguration.h>
 
 using namespace moonlight_xbox_dx;
 using namespace Windows::Gaming::Input;
-
 
 void log_message(const char* fmt, ...);
 void connection_started();
@@ -34,18 +29,18 @@ MoonlightClient::MoonlightClient() {
 
 int MoonlightClient::StartStreaming(std::shared_ptr<DX::DeviceResources> res,StreamConfiguration ^sConfig) {
 	//Thanks to https://stackoverflow.com/questions/11746146/how-to-convert-platformstring-to-char
-	std::wstring fooW(sConfig->hostname->Begin());
+	std::wstring fooW(sConfig->getHostname()->Begin());
 	std::string fooA(fooW.begin(), fooW.end());
 	const char* charStr = fooA.c_str();
 	this->Connect(charStr);
 	STREAM_CONFIGURATION config;
-	config.width = sConfig->width;
-	config.height = sConfig->height;
-	config.bitrate = 8000;
+	config.width = sConfig->getWidth();
+	config.height = sConfig->getHeight();
+	config.bitrate = sConfig->getBitrate();
 	config.clientRefreshRateX100 = 60 * 100;
 	config.colorRange = COLOR_RANGE_LIMITED;
 	config.encryptionFlags = 0;
-	config.fps = UserSelections::getFps();
+	config.fps = sConfig->getFps();
 	config.packetSize = 1024;
 	config.audioConfiguration = AUDIO_CONFIGURATION_STEREO;
 	config.supportsHevc = false;
