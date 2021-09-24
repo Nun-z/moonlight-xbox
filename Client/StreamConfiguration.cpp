@@ -12,7 +12,6 @@ Platform::String^ StreamConfiguration::getNextUserVar(Platform::String^ fileCont
 	std::string givenFileContents = Utils::getTextFromBox(fileContents);
     int endOfFirst = givenFileContents.find_first_of(" ");
     std::string firstVar = givenFileContents.substr(0, endOfFirst);
-    fileContents = Utils::getPlatformString(givenFileContents.substr(endOfFirst + 1, givenFileContents.length() - 1));
     return(Utils::getPlatformString(firstVar));
 }
 
