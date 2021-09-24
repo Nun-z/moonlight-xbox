@@ -4,7 +4,6 @@
 ref class StreamConfiguration {
 
 public:
-
 	static int getAppID()
 	{ return appID; }
 	static int getWidth()
@@ -32,6 +31,7 @@ public:
 	{ fps = givenFps; }
 
 	Platform::String^ getNextUserVar(Platform::String^ fileContents);
+	Platform::String^ getNextSettingsString(Platform::String^ settings);
 	void setDefaults();
 	void initalizeUserFields();
 	Platform::String^ getTextFromFile(Windows::Storage::StorageFile^ givenFile);
