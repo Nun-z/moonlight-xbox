@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 #include "VideoRenderer.h"
-#include "UserSelections.h"
 #include "Client\MoonlightClient.h"
 #include "..\Common\DirectXHelper.h"
 #include <Streaming\FFMpegDecoder.h>
@@ -234,8 +233,8 @@ void VideoRenderer::CreateDeviceDependentResources()
 	D3D11_TEXTURE2D_DESC renderTextureDesc = { 0 };
 
 	//TODO
-	int width = UserSelections::getWidth();
-	int height = UserSelections::getHeight();
+	int width = StreamConfiguration::getWidth();
+	int height = StreamConfiguration::getHeight();
 
 	renderTextureDesc.Width = width;
 	renderTextureDesc.Height = height;

@@ -13,11 +13,12 @@ namespace moonlight_xbox_dx
 	{
 	public:
 		VideoRenderer(const std::shared_ptr<DX::DeviceResources>& deviceResources,MoonlightClient *client,StreamConfiguration ^sConfig);
-		void CreateDeviceDependentResources();
 		void CreateWindowSizeDependentResources();
 		void ReleaseDeviceDependentResources();
 		void Update(DX::StepTimer const& timer);
 		void Render();
+		//TODO
+		void CreateDeviceDependentResources();
 		ID3D11Texture2D* GenerateTexture();
 
 

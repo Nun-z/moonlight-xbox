@@ -5,17 +5,17 @@ ref class StreamConfiguration {
 
 public:
 
-	int getAppID()
+	static int getAppID()
 	{ return appID; }
-	int getWidth()
+	static int getWidth()
 	{ return width; }
-	int getHeight()
+	static int getHeight()
 	{ return height;}
-	int getBitrate()
+	static int getBitrate()
 	{ return bitrate; }
-	int getFps()
+	static int getFps()
 	{ return fps; }
-	Platform::String^ getHostname()
+	static Platform::String^ getHostname()
 	{ return hostname; }
 
 	void setAppID(int givenAppID)
@@ -39,10 +39,10 @@ public:
 	bool doesFileExist(Platform::String^ filename);
 
 private:
-	property Platform::String^ hostname;
-	property int appID;
-	property int width;
-	property int height;
-	property int bitrate;
-	property int fps;
+	property static Platform::String^ hostname;
+	property static int appID;
+	property static int width;
+	property static int height;
+	property static int bitrate;
+	property static int fps;
 };

@@ -72,7 +72,6 @@
       <Filter>Content</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="UserSelections.cpp" />
     <ClCompile Include="Content\LogRenderer.cpp">
       <Filter>Content</Filter>
     </ClCompile>
@@ -99,7 +98,6 @@
       <Filter>Content</Filter>
     </ClInclude>
     <ClInclude Include="Utils.hpp" />
-    <ClInclude Include="UserSelections.h" />
     <ClInclude Include="Content\LogRenderer.h">
       <Filter>Content</Filter>
     </ClInclude>

@@ -203,6 +203,7 @@ void moonlight_xbox_dxMain::OnDeviceLost()
 // Notifies renderers that device resources may now be recreated.
 void moonlight_xbox_dxMain::OnDeviceRestored()
 {
+	//TODO
 	m_sceneRenderer->CreateDeviceDependentResources();
 	m_fpsTextRenderer->CreateDeviceDependentResources();
 	CreateWindowSizeDependentResources();

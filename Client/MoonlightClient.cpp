@@ -6,7 +6,6 @@ extern "C" {
 #include<libgamestream/client.h>
 }
 
-#include "UserSelections.h"
 #include "Streaming\FFMpegDecoder.h"
 #include <Streaming\AudioPlayer.h>
 #include <Utils.hpp>

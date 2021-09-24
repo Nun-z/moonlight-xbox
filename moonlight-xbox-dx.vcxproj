@@ -314,7 +314,6 @@
     <ClInclude Include="Client\StreamConfiguration.h" />
     <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="Common\DirectXHelper.h" />
-    <ClInclude Include="UserSelections.h" />
     <ClInclude Include="Common\StepTimer.h" />
     <ClInclude Include="Content\VideoRenderer.h" />
     <ClInclude Include="Content\LogRenderer.h" />
@@ -357,7 +356,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="UserSelections.cpp" />
     <ClCompile Include="Streaming\AudioPlayer.cpp" />
     <ClCompile Include="Streaming\FFmpegDecoder.cpp" />
     <ClCompile Include="Streaming\FramePacer.cpp" />
