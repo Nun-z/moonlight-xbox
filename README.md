@@ -32,7 +32,7 @@ A port of [Moonlight Stream](https://moonlight-stream.org/) for playing games us
 1.  Create a file named "settings.txt"
 2.  Enter and save one line of information like so: "192.168.1.188 1920 1080 60 9000" (no quotation marks)
 3.  Place the file in the LocalState folder
-4.  Launch the app and select the Load button.
+4.  You don't need to put anything in any of the fields.
 5.  If no settings file can be found, the default settings will be loaded
 
 ## Building
