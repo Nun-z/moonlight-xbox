@@ -105,7 +105,6 @@ void StreamConfiguration::serializeConfiguration() {
 		.then([](IStorageFile^ settingsFile) {
 		return(settingsFile);
 			});
-
 	IStorageFile^ settingsFile = createBlankFileTask.get();
 
 	auto openFileTask = concurrency::create_task(

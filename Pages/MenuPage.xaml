@@ -34,11 +34,12 @@
             <TextBlock Width="52"><Run Text="Bitrate"/></TextBlock>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBox Width="128" x:Name="WidthTextbox" Margin="0,0,20,0"/>
-            <TextBox Width="128" x:Name="HeightTextbox" Margin="0,0,20,0"/>
-            <TextBox Width="128" x:Name="FpsTextbox" Margin="0,0,20,0"/>
-            <TextBox Width="128" x:Name="BitrateTextbox"/>
+            <TextBox Width="128" x:Name="WidthTextbox" Text="1280" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="HeightTextbox" Text="720" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="FpsTextbox" Text="30" Margin="0,0,20,0"/>
+            <TextBox Width="128" x:Name="BitrateTextbox" Text="8000"/>
             <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Margin="20,0,0,0"/>
         </StackPanel>
+        <TextBlock Name="ErrorText"><Run Text=""/></TextBlock>
     </StackPanel>
 </Page>

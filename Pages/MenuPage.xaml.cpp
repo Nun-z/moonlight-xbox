@@ -130,8 +130,28 @@ void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ s
 
 }
 
-void moonlight_xbox_dx::MenuPage::SaveButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
-	concurrency::create_task([] { 
-		config->serializeConfiguration();
-		});
+void moonlight_xbox_dx::MenuPage::SaveButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) 
+{
+	try {
+		Platform::String^ hostname = ipAddressText->Text;
+		concurrency::create_task([hostname] { config->setHostname(hostname); });
+
+		int width = stoi(Utils::getTextFromBox(WidthTextbox->Text));
+		concurrency::create_task([width] { config->setWidth(width); });
+
+		int height = stoi(Utils::getTextFromBox(HeightTextbox->Text));
+		concurrency::create_task([height] { config->setHeight(height); });
+
+		int fps = stoi(Utils::getTextFromBox(FpsTextbox->Text));
+		concurrency::create_task([fps] { config->setFps(fps); });
+
+		int bitrate = stoi(Utils::getTextFromBox(BitrateTextbox->Text));
+		concurrency::create_task([bitrate] { config->setBitrate(bitrate); });
+
+		concurrency::create_task([] { config->serializeConfiguration(); });
+		ErrorText->Text = "";
+	}
+	catch (std::exception e) {
+		ErrorText->Text = "Save failed.  One or more fields is empty or malformed.";
+	}
 }
