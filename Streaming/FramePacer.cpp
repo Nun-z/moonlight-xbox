@@ -2,6 +2,7 @@
 #include "FramePacer.h"
 #include <Common\DirectXHelper.h>
 #include <Utils.hpp>
+#include <synchapi.h>
 
 void FramePacer::Setup(int width, int height) {
 	D3D11_TEXTURE2D_DESC desc;
@@ -51,25 +52,37 @@ void FramePacer::SubmitFrame(Microsoft::WRL::ComPtr<ID3D11Texture2D> texture,int
 
 void FramePacer::PrepareFrameForRendering() {
 	if (decodeIndex < 0)return;
+	bool advanced = false;
 	int nextIndex = renderIndex + 1;
 	int di = decodeIndex;
-	if (di - nextIndex > 4) {
-		nextIndex++;
-		moonlight_xbox_dx::Utils::Log("Catch up\n");
-	}
-	if (di - nextIndex >= 0) {
-		if (renderIndex >= 0 && decodeIndex > 0) {
-			Frame currentFrame = frames[renderIndex % queueSize];
-			currentFrame.renderMutex->ReleaseSync(0);
+	//Try a couple times before going to next frame
+	for (int i = 0; i < 16; i++) {
+		nextIndex = renderIndex + 1;
+		di = decodeIndex;
+		/*if (di - nextIndex > 4 || droppedFrames > 60) {
+			nextIndex = di - 2;
+			moonlight_xbox_dx::Utils::Log("Catch up\n");
+			droppedFrames = 0;
+		}*/
+		if (di - nextIndex >= 0) {
+			droppedFrames = 0;
+			if (renderIndex >= 0 && decodeIndex > 0) {
+				Frame currentFrame = frames[renderIndex % queueSize];
+				currentFrame.renderMutex->ReleaseSync(0);
+			}
+			Frame nextFrame = frames[nextIndex % queueSize];
+			nextFrame.renderMutex->AcquireSync(1, 100);
+			renderIndex = nextIndex;
+			advanced = true;
+			break;
 		}
-		Frame nextFrame = frames[nextIndex % queueSize];
-		nextFrame.renderMutex->AcquireSync(1, 100);
-		renderIndex = nextIndex;
+		Sleep(1);
 	}
-	else {
-		/*char msg[4096];
-		std::snprintf(msg, sizeof(msg), "Locked: %d - %d\n", di, nextIndex);
-		moonlight_xbox_dx::Utils::Log(msg);*/
+	if (!advanced) {
+		//char msg[4096];
+		//std::snprintf(msg, sizeof(msg), "Locked: %d - %d (%d)\n", nextIndex, di,droppedFrames);
+		//moonlight_xbox_dx::Utils::Log(msg);
+		droppedFrames++;
 	}
 }
 

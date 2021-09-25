@@ -6,7 +6,7 @@
 namespace moonlight_xbox_dx {
 	namespace Utils {
 		std::vector<std::wstring> logLines;
-		bool showLogs;
+		bool showLogs = true;
 
 		Platform::String^ StringPrintf(const char* fmt, ...) {
 			va_list list;
