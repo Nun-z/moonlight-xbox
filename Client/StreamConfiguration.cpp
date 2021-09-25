@@ -5,6 +5,7 @@
 
 using namespace moonlight_xbox_dx;
 using namespace Windows::Storage;
+using namespace Windows::Storage::Streams;
 using namespace Windows::System;
 
 //TODO
@@ -93,4 +94,32 @@ bool StreamConfiguration::doesFileExist(Platform::String^ filename) {
 			});
 
 	return(checkFileTask.get());
+}
+
+void StreamConfiguration::serializeConfiguration() {
+	Windows::Storage::StorageFolder^ localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
+	Platform::String^ filename = Utils::getPlatformString("settings.txt");
+
+	auto createBlankFileTask = concurrency::create_task(
+		localFolder->CreateFileAsync(filename, Windows::Storage::CreationCollisionOption::ReplaceExisting))
+		.then([](IStorageFile^ settingsFile) {
+		return(settingsFile);
+			});
+
+	IStorageFile^ settingsFile = createBlankFileTask.get();
+
+	auto openFileTask = concurrency::create_task(
+		settingsFile->OpenAsync(FileAccessMode::ReadWrite))
+		.then([](IRandomAccessStream^ settingsStream) {
+		return(settingsStream);
+			});
+	
+	DataWriter^ newWriter = ref new DataWriter(openFileTask.get());
+	std::string settingsToWrite;
+	settingsToWrite.append(Utils::getTextFromBox(hostname) + " " + Utils::getTextFromBox(width.ToString()) + " ");
+	settingsToWrite.append(Utils::getTextFromBox(height.ToString()) + " " + Utils::getTextFromBox(fps.ToString()) + " ");
+	settingsToWrite.append(Utils::getTextFromBox(bitrate.ToString()));
+
+	newWriter->WriteString(Utils::getPlatformString(settingsToWrite));
+	newWriter->StoreAsync();
 }

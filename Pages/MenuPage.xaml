@@ -38,6 +38,7 @@
             <TextBox Width="128" x:Name="HeightTextbox" Margin="0,0,20,0"/>
             <TextBox Width="128" x:Name="FpsTextbox" Margin="0,0,20,0"/>
             <TextBox Width="128" x:Name="BitrateTextbox"/>
+            <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Margin="20,0,0,0"/>
         </StackPanel>
     </StackPanel>
 </Page>

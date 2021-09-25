@@ -103,20 +103,16 @@ void moonlight_xbox_dx::MenuPage::UpdateApps() {
 void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 	ComboBoxItem^ item = (ComboBoxItem^)this->appsComboBox->SelectedItem;
 
-	if (Utils::getTextFromBox(WidthTextbox->Text) != "")
-	{
+	if (Utils::getTextFromBox(WidthTextbox->Text) != "") {
 		config->setWidth(std::stoi(Utils::getTextFromBox(WidthTextbox->Text)));
 	}
-	if (Utils::getTextFromBox(HeightTextbox->Text) != "")
-	{
+	if (Utils::getTextFromBox(HeightTextbox->Text) != "") {
 		config->setHeight(std::stoi(Utils::getTextFromBox(HeightTextbox->Text)));
 	}
-	if (Utils::getTextFromBox(FpsTextbox->Text) != "")
-	{
+	if (Utils::getTextFromBox(FpsTextbox->Text) != "") {
 		config->setFps(std::stoi(Utils::getTextFromBox(FpsTextbox->Text)));
 	}
-	if (Utils::getTextFromBox(BitrateTextbox->Text) != "")
-	{
+	if (Utils::getTextFromBox(BitrateTextbox->Text) != "") {
 		config->setBitrate(std::stoi(Utils::getTextFromBox(FpsTextbox->Text)));
 	}
 
@@ -130,7 +126,12 @@ void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows
 	}
 }
 
-void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
+void moonlight_xbox_dx::MenuPage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 
+}
+
+void moonlight_xbox_dx::MenuPage::SaveButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
+	concurrency::create_task([] { 
+		config->serializeConfiguration();
+		});
 }

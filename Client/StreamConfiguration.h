@@ -38,6 +38,8 @@ public:
 	Windows::Storage::StorageFile^ getFile(Platform::String^ filename);
 	bool doesFileExist(Platform::String^ filename);
 
+	void serializeConfiguration();
+
 private:
 	property static Platform::String^ hostname;
 	property static int appID;
