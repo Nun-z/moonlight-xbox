@@ -45,9 +45,9 @@ int MoonlightClient::StartStreaming(std::shared_ptr<DX::DeviceResources> res,Str
 	config.supportsHevc = false;
 	config.streamingRemotely = STREAM_CFG_AUTO;
 	char message[2048];
-	sprintf(message, "Inserted App ID %d\n", sConfig->appID);
+	sprintf(message, "Inserted App ID %d\n", sConfig->getAppID());
 	Utils::Log(message);
-	int a = gs_start_app(&serverData, &config, sConfig->appID, false, true, 0);
+	int a = gs_start_app(&serverData, &config, sConfig->getAppID(), false, true, 0);
 	CONNECTION_LISTENER_CALLBACKS callbacks;
 	callbacks.logMessage = log_message;
 	callbacks.connectionStarted = connection_started;
