@@ -91,6 +91,7 @@
       <Filter>Client</Filter>
     </ClCompile>
     <ClCompile Include="Client\StreamConfiguration.cpp" />
+    <ClCompile Include="Content\StatsRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -119,6 +120,7 @@
     <ClInclude Include="Client\StreamConfiguration.h">
       <Filter>Client</Filter>
     </ClInclude>
+    <ClInclude Include="Content\StatsRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

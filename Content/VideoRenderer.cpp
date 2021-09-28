@@ -229,7 +229,6 @@ void VideoRenderer::CreateDeviceDependentResources()
 	samplerDesc.MinLOD = -FLT_MAX;
 	samplerDesc.MaxLOD = FLT_MAX;
 	DX::ThrowIfFailed(m_deviceResources->GetD3DDevice()->CreateSamplerState(&samplerDesc, samplerState.GetAddressOf()),"Sampler Creation");
-	DX::ThrowIfFailed(E_ACCESSDENIED,"Test Logging");
 	D3D11_TEXTURE2D_DESC renderTextureDesc = { 0 };
 
 	//TODO
