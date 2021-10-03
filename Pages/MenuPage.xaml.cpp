@@ -107,31 +107,35 @@ void moonlight_xbox_dx::MenuPage::UpdateApps() {
 
 void moonlight_xbox_dx::MenuPage::OnAppClicked(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
 	ComboBoxItem^ item = (ComboBoxItem^)this->appsComboBox->SelectedItem;
+	std::string selectedApp = Utils::getTextFromBox(appsComboBox->SelectedValue->ToString());
 
-	if (Utils::getTextFromBox(WidthTextbox->Text) != "") {
-		int width = std::stoi(Utils::getTextFromBox(WidthTextbox->Text));
-		concurrency::create_task([width] { config->setWidth(width); } );
-	}
-	if (Utils::getTextFromBox(HeightTextbox->Text) != "") {
-		int height = std::stoi(Utils::getTextFromBox(HeightTextbox->Text));
-		concurrency::create_task([height] { config->setHeight(height); });
-	}
-	if (Utils::getTextFromBox(FpsTextbox->Text) != "") {
-		int fps = std::stoi(Utils::getTextFromBox(FpsTextbox->Text));
-		concurrency::create_task([fps] { config->setFps(fps); });
-	}
-	if (Utils::getTextFromBox(BitrateTextbox->Text) != "") {
-		int bitrate = std::stoi(Utils::getTextFromBox(BitrateTextbox->Text));
-		concurrency::create_task([bitrate] { config->setBitrate(bitrate); });
-	}
+	if (selectedApp != "")
+	{
+		if (Utils::getTextFromBox(WidthTextbox->Text) != "") {
+			int width = std::stoi(Utils::getTextFromBox(WidthTextbox->Text));
+			concurrency::create_task([width] { config->setWidth(width); });
+		}
+		if (Utils::getTextFromBox(HeightTextbox->Text) != "") {
+			int height = std::stoi(Utils::getTextFromBox(HeightTextbox->Text));
+			concurrency::create_task([height] { config->setHeight(height); });
+		}
+		if (Utils::getTextFromBox(FpsTextbox->Text) != "") {
+			int fps = std::stoi(Utils::getTextFromBox(FpsTextbox->Text));
+			concurrency::create_task([fps] { config->setFps(fps); });
+		}
+		if (Utils::getTextFromBox(BitrateTextbox->Text) != "") {
+			int bitrate = std::stoi(Utils::getTextFromBox(BitrateTextbox->Text));
+			concurrency::create_task([bitrate] { config->setBitrate(bitrate); });
+		}
 
-	config->setAppID((int)item->DataContext);
-	bool result = this->Frame->Navigate(Windows::UI::Xaml::Interop::TypeName(StreamPage::typeid), config);
-	if (result) {
-		this->ConnectStatusText->Text = L"OK";
-	}
-	else {
-		this->ConnectStatusText->Text = L"Unable to Navigate onto DirectX Page";
+		config->setAppID((int)item->DataContext);
+		bool result = this->Frame->Navigate(Windows::UI::Xaml::Interop::TypeName(StreamPage::typeid), config);
+		if (result) {
+			this->ConnectStatusText->Text = L"OK";
+		}
+		else {
+			this->ConnectStatusText->Text = L"Unable to Navigate onto DirectX Page";
+		}
 	}
 }
 

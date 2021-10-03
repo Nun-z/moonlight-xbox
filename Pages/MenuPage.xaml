@@ -21,7 +21,7 @@
         <StackPanel x:Name="appsPanel">
             <TextBlock >Applications</TextBlock>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
-                <ComboBox  Width="128" x:Name="appsComboBox"  Margin="0,0,20,0">
+                <ComboBox  Width="128" x:Name="appsComboBox" SelectedValuePath="Content"  Margin="0,0,20,0">
                 </ComboBox>
                 <Button Click="OnAppClicked" Margin="10,0,0,0">Open</Button>
                 <TextBlock x:Name="ConnectStatusText"></TextBlock>
